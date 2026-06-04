@@ -1,18 +1,29 @@
 package patos;
 
-import comportamiento.ComportamientoDeVuelo;
-import comportamiento.ComportamientoDeGraznido;
+import comportamiento.*;
 
-public abstract class Pato {
+public class Pato {
 
-    protected ComportamientoDeVuelo comportamientoVuelo;
-    protected ComportamientoDeGraznido comportamientoGraznido;
+    private ComportamientoDeVuelo comportamientoVuelo;
+    private ComportamientoDeGraznido comportamientoGraznido;
+
+    protected String tipoVuelo;
+    protected String tipoGraznido;
+
+    public Pato(String tipoVuelo, String tipoGraznido) {
+        this.tipoVuelo    = tipoVuelo;
+        this.tipoGraznido = tipoGraznido;
+        establecerComportamientoDeVuelo(tipoVuelo);
+        establecerComportamientoDeGraznido(tipoGraznido);
+    }
 
     public void nadar() {
         System.out.println("Todos los patos saben nadar.");
     }
 
-    public abstract void dibujar();
+    public void dibujar() {
+        System.out.println("Soy un pato genérico.");
+    }
 
     public void hacerQuack() {
         comportamientoGraznido.quack();
@@ -22,12 +33,22 @@ public abstract class Pato {
         comportamientoVuelo.volar();
     }
 
-    // Permite cambiar el comportamiento en tiempo de ejecución (patrón Strategy)
-    public void establecerComportamientoDeVuelo(ComportamientoDeVuelo cv) {
-        this.comportamientoVuelo = cv;
+    protected void establecerComportamientoDeVuelo(String tipoVuelo) {
+        this.tipoVuelo = tipoVuelo;
+        switch (tipoVuelo) {
+            case "VolarConAlas" -> this.comportamientoVuelo = new VolarConAlas();
+            case "SinVuelo"     -> this.comportamientoVuelo = new SinVuelo();
+            default -> throw new IllegalArgumentException("Tipo de vuelo desconocido: " + tipoVuelo);
+        }
     }
 
-    public void establecerComportamientoDeGraznido(ComportamientoDeGraznido cg) {
-        this.comportamientoGraznido = cg;
+    protected void establecerComportamientoDeGraznido(String tipoGraznido) {
+        this.tipoGraznido = tipoGraznido;
+        switch (tipoGraznido) {
+            case "Quack"    -> this.comportamientoGraznido = new Quack();
+            case "Chillido" -> this.comportamientoGraznido = new Chillido();
+            case "Mudo"     -> this.comportamientoGraznido = new Mudo();
+            default -> throw new IllegalArgumentException("Tipo de graznido desconocido: " + tipoGraznido);
+        }
     }
 }

@@ -1,13 +1,8 @@
 package patos;
 
-import comportamiento.SinVuelo;
-import comportamiento.Chillido;
-
 public class PatoDeHule extends Pato {
-
     public PatoDeHule() {
-        comportamientoVuelo   = new SinVuelo();
-        comportamientoGraznido = new Chillido();
+        super("SinVuelo", "Chillido");
     }
 
     @Override

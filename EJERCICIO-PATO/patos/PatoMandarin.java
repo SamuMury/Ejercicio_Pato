@@ -1,13 +1,8 @@
 package patos;
 
-import comportamiento.VolarConAlas;
-import comportamiento.Quack;
-
 public class PatoMandarin extends Pato {
-
     public PatoMandarin() {
-        comportamientoVuelo   = new VolarConAlas();
-        comportamientoGraznido = new Quack();
+        super("VolarConAlas", "Quack");
     }
 
     @Override

@@ -8,7 +8,8 @@ public class Main {
             new PatoMallard(),
             new PatoMandarin(),
             new PatoDeHule(),
-            new PatoDeCasa()
+            new PatoDeCasa(),
+            new PatoVendedorRosas()
         );
 
         for (Pato pato : patos) {

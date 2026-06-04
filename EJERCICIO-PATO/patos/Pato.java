@@ -38,6 +38,7 @@ public class Pato {
         switch (tipoVuelo) {
             case "VolarConAlas" -> this.comportamientoVuelo = new VolarConAlas();
             case "SinVuelo"     -> this.comportamientoVuelo = new SinVuelo();
+            case "Voy soplado, estoy relocoooo!" -> this.comportamientoVuelo = new VolarSoplado();
             default -> throw new IllegalArgumentException("Tipo de vuelo desconocido: " + tipoVuelo);
         }
     }
@@ -48,6 +49,7 @@ public class Pato {
             case "Quack"    -> this.comportamientoGraznido = new Quack();
             case "Chillido" -> this.comportamientoGraznido = new Chillido();
             case "Mudo"     -> this.comportamientoGraznido = new Mudo();
+            case "WASSAAAAA!" -> this.comportamientoGraznido = new GraznidoSoplado();
             default -> throw new IllegalArgumentException("Tipo de graznido desconocido: " + tipoGraznido);
         }
     }
